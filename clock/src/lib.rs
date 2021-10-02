@@ -2,7 +2,7 @@ use std::fmt::{Display, Formatter, Result};
 const MINUTES_DAY: i32 = 1440;
 const MINUTES_HOUR: i32 = 60;
 
-#[derive(Debug, PartialEq, PartialOrd)]
+#[derive(Debug, PartialEq)]
 pub struct Clock {
     minutes: i32,
 }
@@ -15,9 +15,7 @@ impl Clock {
     }
 
     pub fn add_minutes(&self, minutes: i32) -> Self {
-        Self {
-            minutes: (self.minutes + minutes).rem_euclid(MINUTES_DAY)
-        }
+        Self::new(0, self.minutes + minutes)
     }
 }
 
